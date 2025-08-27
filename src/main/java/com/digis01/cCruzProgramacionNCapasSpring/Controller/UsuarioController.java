@@ -73,6 +73,7 @@ public class UsuarioController {
 
     @Autowired //Inyeccion de repositorios y cositas :V
     private UsuarioDAOImplementation usuarioDAOImplementation;
+    @Autowired
     private UsuarioJPADAOImplementation usuarioJPADAOImplementation;
     @Autowired
     private RolDAOImplementation rolDAOImplementation;
