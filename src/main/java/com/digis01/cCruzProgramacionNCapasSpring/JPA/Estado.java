@@ -4,7 +4,7 @@
  */
 package com.digis01.cCruzProgramacionNCapasSpring.JPA;
 
-import com.digis01.cCruzProgramacionNCapasSpring.ML.Pais;
+import com.digis01.cCruzProgramacionNCapasSpring.JPA.Pais;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,4 +27,30 @@ public class Estado {
     @ManyToOne
     @JoinColumn(name = "idpais")
     public Pais Pais;
+
+    public int getIdEstado() {
+        return IdEstado;
+    }
+
+    public void setIdEstado(int IdEstado) {
+        this.IdEstado = IdEstado;
+    }
+
+    public String getNombreEstado() {
+        return NombreEstado;
+    }
+
+    public void setNombreEstado(String NombreEstado) {
+        this.NombreEstado = NombreEstado;
+    }
+
+    public Pais getPais() {
+        return Pais;
+    }
+
+    public void setPais(Pais Pais) {
+        this.Pais = Pais;
+    }
+    
+    
 }

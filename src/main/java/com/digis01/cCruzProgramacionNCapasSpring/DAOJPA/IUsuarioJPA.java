@@ -4,9 +4,9 @@
  */
 package com.digis01.cCruzProgramacionNCapasSpring.DAOJPA;
 
-import com.digis01.cCruzProgramacionNCapasSpring.DAO.*;
+import com.digis01.cCruzProgramacionNCapasSpring.JPA.Usuario;
 import com.digis01.cCruzProgramacionNCapasSpring.ML.Result;
-import com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario;
+
 
 /**
  *
@@ -14,7 +14,7 @@ import com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario;
  */
 interface IUsuarioJPA {
             Result GetAll(); //Esto es un metodo abstracto, no lleva implementacion en una interfaz.
-            Result GetDetail(int idAlumno);
+            Result GetDetail(int idUsuario);
             Result Add(Usuario usuario);
             Result UpdateUser(Usuario usuario);
             Result GetAllBusqueda(Usuario usuario);

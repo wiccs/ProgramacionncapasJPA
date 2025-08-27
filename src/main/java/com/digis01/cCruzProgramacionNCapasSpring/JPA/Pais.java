@@ -18,5 +18,23 @@ public class Pais {
     
     @Column(name = "nombrepais")
     public String NombrePais;
+
+    public int getIdPais() {
+        return IdPais;
+    }
+
+    public void setIdPais(int IdPais) {
+        this.IdPais = IdPais;
+    }
+
+    public String getNombrePais() {
+        return NombrePais;
+    }
+
+    public void setNombrePais(String NombrePais) {
+        this.NombrePais = NombrePais;
+    }
+    
+    
     
 }

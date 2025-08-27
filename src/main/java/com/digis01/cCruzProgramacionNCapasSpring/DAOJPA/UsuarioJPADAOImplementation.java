@@ -4,10 +4,12 @@
  */
 package com.digis01.cCruzProgramacionNCapasSpring.DAOJPA;
 
+import com.digis01.cCruzProgramacionNCapasSpring.JPA.Usuario;
 import com.digis01.cCruzProgramacionNCapasSpring.ML.Result;
-import com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Alien 15
  */
-public class UsuarioJPADAOImplementation implements IUsuarioJPA{
+public class UsuarioJPADAOImplementation implements IUsuarioJPA {
 
     @Autowired
 
@@ -29,19 +31,21 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA{
 
         try {
 
-            TypedQuery<Usuario> queryAlumno = entityManager.createQuery("FROM Alumno", Usuario.class);
+            TypedQuery<Usuario> queryUsuario = entityManager.createQuery("FROM Usuario ORDER BY IdUsuario", Usuario.class);
 
-            List<Usuario> usuarios = queryAlumno.getResultList();
-            
-            for(Usuario usuario : usuarios){
-            result.objects.add(usuario); }
-            
+            List<Usuario> usuarios = queryUsuario.getResultList();
+
+            result.objects = new ArrayList<>();
+            for (Usuario usuario : usuarios) {
+
+                result.objects.add(new com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario(usuario));
+
+            }
+
         } catch (Exception ex) {
 
             result.correct = false;
-
             result.errorMessage = ex.getLocalizedMessage();
-
             result.ex = ex;
 
         }
@@ -51,8 +55,25 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA{
     }
 
     @Override
-    public Result GetDetail(int idAlumno) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Result GetDetail(int idUsuario) {
+        Result result = new Result();
+        try {
+            TypedQuery<Usuario> queryUsuario = entityManager.createQuery("FROM Usuario WHERE ID = :id" ,Usuario.class);
+            queryUsuario.setParameter("id", idUsuario);
+            
+            List<Usuario> usuarios = queryUsuario.getResultList(); //Obtiene los resultados en una lista. 
+            result.objects = new ArrayList<>();
+            
+            for (Usuario usuario : usuarios) {
+
+                result.objects.add(new com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario(usuario));
+                
+            }
+  
+            
+        } catch (Exception e) {
+        }
+        return result;
     }
 
     @Override

@@ -10,7 +10,8 @@ import com.digis01.cCruzProgramacionNCapasSpring.DAO.MunicipioDAOImplementation;
 import com.digis01.cCruzProgramacionNCapasSpring.DAO.PaisDAOImplementation;
 import com.digis01.cCruzProgramacionNCapasSpring.DAO.RolDAOImplementation;
 import com.digis01.cCruzProgramacionNCapasSpring.DAO.UsuarioDAOImplementation;
-import com.digis01.cCruzProgramacionNCapasSpring.ML.Direccion;
+import com.digis01.cCruzProgramacionNCapasSpring.DAOJPA.UsuarioJPADAOImplementation;
+
 import com.digis01.cCruzProgramacionNCapasSpring.ML.ErrorCM;
 import jakarta.validation.Valid;
 import jakarta.servlet.http.HttpSession;
@@ -26,8 +27,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.digis01.cCruzProgramacionNCapasSpring.ML.Result;
-import com.digis01.cCruzProgramacionNCapasSpring.ML.Rol;
-import com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario;
+import com.digis01.cCruzProgramacionNCapasSpring.JPA.Rol;
+import com.digis01.cCruzProgramacionNCapasSpring.JPA.Usuario;
+
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -70,6 +73,7 @@ public class UsuarioController {
 
     @Autowired //Inyeccion de repositorios y cositas :V
     private UsuarioDAOImplementation usuarioDAOImplementation;
+    private UsuarioJPADAOImplementation usuarioJPADAOImplementation;
     @Autowired
     private RolDAOImplementation rolDAOImplementation;
     @Autowired
@@ -83,9 +87,13 @@ public class UsuarioController {
 
     @GetMapping
     public String Index(Model model) {
-        Result result = usuarioDAOImplementation.GetAll();
+        
+        //Result result = usuarioDAOImplementation.GetAll();
   
-        model.addAttribute("usuarioBusqueda", new Usuario("","",""));
+        Result result = usuarioJPADAOImplementation.GetAll();
+        model.addAttribute("usuarioBusqueda", new Usuario());
+        
+        
 
         if (result.correct) {
             model.addAttribute("usuarios", result.objects);
@@ -101,7 +109,7 @@ public class UsuarioController {
     @PostMapping
     public String Index(Model model, @ModelAttribute("usuarioBusqueda") Usuario usuarioBusqueda ) {
 
-        Result result = usuarioDAOImplementation.GetAllBusqueda(usuarioBusqueda);
+       // Result result = usuarioDAOImplementation.GetAllBusqueda(usuarioBusqueda);
 
 //        model.addAttribute("alumnoBusqueda", alumnoBusqueda);
 
@@ -190,7 +198,7 @@ public class UsuarioController {
             }
         }
 
-        Result result = usuarioDAOImplementation.UpdateUser(usuario);
+      //  Result result = usuarioDAOImplementation.UpdateUser(usuario);
 
         return "redirect:/usuario";
         //}
@@ -310,7 +318,7 @@ public class UsuarioController {
             }
 
             for (Usuario usuario : usuarios) {
-                usuarioDAOImplementation.Add(usuario);
+         //       usuarioDAOImplementation.Add(usuario);
             }
 
             session.removeAttribute("path");

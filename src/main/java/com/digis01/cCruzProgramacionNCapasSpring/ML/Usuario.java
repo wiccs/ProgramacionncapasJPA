@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -14,6 +14,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java.util.ArrayList;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -41,30 +42,30 @@ public class Usuario {
     private int Edad; //Recuerda quitar edad ya que se calcula con la fecha!!!
 
     private String Sexo;
-    
+
 //    @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date FechaNacimiento;
-    
+
 //    @NotBlank
     private String Username;
-    
+
 //    @Pattern(regexp="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}", message = "Ingrese un email valido ┬┬﹏┬┬")
     private String Email;
-    
+
     private String Password;
-    
+
 //    @Size(min = 10, max = 13, message = "entre 10 y 12 numeros")
     private String Telefono;
-    
+
 //     @Size(min = 10, max = 13, message = "entre 10 y 12 numeros")
     private String Celular;
-    
+
 //     @Size(min = 18, max = 18, message = "entre 10 y 12 numeros")
     private String Curp;
-    
+
     private String Fotito; ///FOTO de usuario
-     
+
     public Rol Rol; //Propiedad Almacenada
 
     public List<Direccion> Direcciones;
@@ -106,22 +107,65 @@ public class Usuario {
         this.Rol.setIdRol(IdRol);
     }
 
-    
-    public Usuario(String Nombre, String ApellidoPaterno, String ApellidoMaterno) {
-
-
+    public Usuario(String Nombre, String ApellidoPaterno, String ApellidoMaterno) { //Este contructor sirve para la busqueda abierta
 
         this.Nombre = Nombre;
 
-
         this.ApellidoPaterno = ApellidoPaterno;
-
 
         this.ApellidoMaterno = ApellidoMaterno;
 
-
     }
-    
+
+    public Usuario(com.digis01.cCruzProgramacionNCapasSpring.JPA.Usuario usuarioJPA) {
+        this.IdUsuario = usuarioJPA.getIdUsuario();
+        this.Nombre = usuarioJPA.getNombre();
+        this.ApellidoPaterno = usuarioJPA.getApellidoPaterno();
+        this.ApellidoMaterno = usuarioJPA.getApellidoMaterno();
+        this.Edad = usuarioJPA.getEdad();
+        this.Sexo = usuarioJPA.getSexo();
+        this.FechaNacimiento = usuarioJPA.getFechaNacimiento();
+        this.Username = usuarioJPA.getUsername();
+        this.Email = usuarioJPA.getEmail();
+        this.Password = usuarioJPA.getPassword();
+        this.Telefono = usuarioJPA.getTelefono();
+        this.Celular = usuarioJPA.getCelular();
+        this.Curp = usuarioJPA.getCurp();
+
+        this.Rol = new Rol();
+        this.Rol.setIdRol(usuarioJPA.Rol.getIdRol());
+        this.Rol.setNombre(usuarioJPA.Rol.getNombre());
+        if (usuarioJPA.Direcciones != null && usuarioJPA.Direcciones.size() > 0) {
+            this.Direcciones = new ArrayList<>();
+            for (com.digis01.cCruzProgramacionNCapasSpring.JPA.Direccion direc : usuarioJPA.Direcciones) {
+                Direccion direccion = new Direccion();
+                direccion.setIdDireccion(direc.getIdDireccion());
+                direccion.setCalle(direc.getCalle());
+                
+                com.digis01.cCruzProgramacionNCapasSpring.JPA.Colonia colonia = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Colonia();
+                direccion.colonia.setIdColonia(colonia.getIdColonia());
+                direccion.colonia.setNombreColonia(colonia.getNombreColonia());
+                direccion.colonia.setCodigoPostal(colonia.getCodigoPostal());
+                
+                com.digis01.cCruzProgramacionNCapasSpring.JPA.Municipio municipio = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Municipio();
+                direccion.colonia.Municipio.setIdMunicipio(municipio.getIdMunicipio());
+                direccion.colonia.Municipio.setNombreMunicipio(municipio.getNombreMunicipio());
+                
+                com.digis01.cCruzProgramacionNCapasSpring.JPA.Estado estado = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Estado();
+                direccion.colonia.Municipio.Estado.setIdEstado(estado.getIdEstado());
+                direccion.colonia.Municipio.Estado.setNombreEstado(estado.getNombreEstado());
+                
+                com.digis01.cCruzProgramacionNCapasSpring.JPA.Pais pais = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Pais();
+                direccion.colonia.Municipio.Estado.Pais.setIdPais(pais.getIdPais());
+                direccion.colonia.Municipio.Estado.Pais.setNombrePais(pais.getNombrePais());
+              
+                this.Direcciones.add(direccion);
+            }
+        
+        }
+   
+    }
+
     public int getIdUsuario() {
         return IdUsuario;
     }
@@ -213,12 +257,12 @@ public class Usuario {
     public String getCurp() {
         return Curp;
     }
-    
-    public String getFotito(){
+
+    public String getFotito() {
         return Fotito;
     }
-    
-    public void setFotito(String Fotito){
+
+    public void setFotito(String Fotito) {
         this.Fotito = Fotito;
     }
 
