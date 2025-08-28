@@ -122,7 +122,7 @@ public class Usuario {
         this.Nombre = usuarioJPA.getNombre();
         this.ApellidoPaterno = usuarioJPA.getApellidoPaterno();
         this.ApellidoMaterno = usuarioJPA.getApellidoMaterno();
-        this.Edad = usuarioJPA.getEdad();
+        //this.Edad = usuarioJPA.getEdad();
         this.Sexo = usuarioJPA.getSexo();
         this.FechaNacimiento = usuarioJPA.getFechaNacimiento();
         this.Username = usuarioJPA.getUsername();
@@ -138,26 +138,36 @@ public class Usuario {
         if (usuarioJPA.Direcciones != null && usuarioJPA.Direcciones.size() > 0) {
             this.Direcciones = new ArrayList<>();
             for (com.digis01.cCruzProgramacionNCapasSpring.JPA.Direccion direc : usuarioJPA.Direcciones) {
+                
+                //Inicializacion de ML: 
                 Direccion direccion = new Direccion();
-                direccion.setIdDireccion(direc.getIdDireccion());
-                direccion.setCalle(direc.getCalle());
+                direccion.Coloniia = new Colonia();
+                direccion.Coloniia.Municipio = new Municipio();
+                direccion.Coloniia.Municipio.Estado = new Estado();
+                direccion.Coloniia.Municipio.Estado.Pais = new Pais();
+                
+                
                 
                 com.digis01.cCruzProgramacionNCapasSpring.JPA.Colonia colonia = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Colonia();
-                direccion.colonia.setIdColonia(colonia.getIdColonia());
-                direccion.colonia.setNombreColonia(colonia.getNombreColonia());
-                direccion.colonia.setCodigoPostal(colonia.getCodigoPostal());
+                direccion.Coloniia.setIdColonia(colonia.getIdColonia());
+                direccion.Coloniia.setNombreColonia(colonia.getNombreColonia());
+                direccion.Coloniia.setCodigoPostal(colonia.getCodigoPostal());
+          
+                direccion.setCalle(direc.getCalle());
+                direccion.setNumeroExterior(direc.getNumeroExterior());
+                direccion.setNumeroInterior(direc.getNumeroInterior());
                 
                 com.digis01.cCruzProgramacionNCapasSpring.JPA.Municipio municipio = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Municipio();
-                direccion.colonia.Municipio.setIdMunicipio(municipio.getIdMunicipio());
-                direccion.colonia.Municipio.setNombreMunicipio(municipio.getNombreMunicipio());
+                direccion.Coloniia.Municipio.setIdMunicipio(municipio.getIdMunicipio());
+                direccion.Coloniia.Municipio.setNombreMunicipio(municipio.getNombreMunicipio());
                 
                 com.digis01.cCruzProgramacionNCapasSpring.JPA.Estado estado = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Estado();
-                direccion.colonia.Municipio.Estado.setIdEstado(estado.getIdEstado());
-                direccion.colonia.Municipio.Estado.setNombreEstado(estado.getNombreEstado());
+                direccion.Coloniia.Municipio.Estado.setIdEstado(estado.getIdEstado());
+                direccion.Coloniia.Municipio.Estado.setNombreEstado(estado.getNombreEstado());
                 
                 com.digis01.cCruzProgramacionNCapasSpring.JPA.Pais pais = new com.digis01.cCruzProgramacionNCapasSpring.JPA.Pais();
-                direccion.colonia.Municipio.Estado.Pais.setIdPais(pais.getIdPais());
-                direccion.colonia.Municipio.Estado.Pais.setNombrePais(pais.getNombrePais());
+                direccion.Coloniia.Municipio.Estado.Pais.setIdPais(pais.getIdPais());
+                direccion.Coloniia.Municipio.Estado.Pais.setNombrePais(pais.getNombrePais());
               
                 this.Direcciones.add(direccion);
             }
@@ -205,6 +215,8 @@ public class Usuario {
     public void setEdad(int Edad) {
         this.Edad = Edad;
     }
+
+    
 
     public String getSexo() {
         return Sexo;

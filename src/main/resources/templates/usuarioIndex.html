@@ -6,11 +6,73 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     </head>
+
+    <style>
+        .switch input {
+            display:none;
+        }
+        .switch {
+            display:inline-block;
+            width:55px;
+            height:25px;
+            margin:8px;
+            transform:translateY(50%);
+            position:relative;
+        }
+        /* Style Wired */
+        .slider {
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            border-radius:30px;
+            box-shadow:0 0 0 2px #777, 0 0 4px #777;
+            cursor:pointer;
+            border:4px solid transparent;
+            overflow:hidden;
+            transition:.4s;
+        }
+        .slider:before {
+            position:absolute;
+            content:"";
+            width:100%;
+            height:100%;
+            background:#777;
+            border-radius:30px;
+            transform:translateX(-30px);
+            transition:.4s;
+        }
+
+        input:checked + .slider:before {
+            transform:translateX(30px);
+            background:limeGreen;
+        }
+        input:checked + .slider {
+            box-shadow:0 0 0 2px limeGreen,0 0 2px limeGreen;
+        }
+
+        /* Style Flat */
+        .switch.flat .slider {
+            box-shadow:none;
+        }
+        .switch.flat .slider:before {
+            background:#FFF;
+        }
+        .switch.flat input:checked + .slider:before {
+            background:white;
+        }
+        .switch.flat input:checked + .slider {
+            background:limeGreen;
+        }
+    </style>
+
     <body>
-        
+
         <div class="container">
-            
+
             <nav class="navbar navbar-expand-lg navbar-light bg-dark mb-4 ">
                 <a class="navbar-brand text-white" th:href="@{/usuario}">INDEX</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +87,8 @@
                     </div>
                 </div>
             </nav>
-            
-            
+
+
             <form method="post" th:action="@{/usuario}" th:object="${usuarioBusqueda}">
 
                 <div class="row">
@@ -61,54 +123,66 @@
 
             </form>
 
-            
+
             <div class="container">
                 <p class="fs-2">Usuarios Registrados</p>
             </div>
 
             <table class="table table-hover mt-4">
                 <thead class="table-dark">
-                    <th class="col-1"></th>
-                    <th class="col-4">Nombre</th>
-                    <th class="col-3">Contacta</th>
-                    <th class="col-2">Dirección</th>
+                <th class="col-1"></th>
+                <th class="col-4">Nombre</th>
+                <th class="col-3">Contacta</th>
+                <th class="col-2">Dirección</th>
                 </thead>
-                
+
                 <tbody>
                     <tr th:each="usuario : ${usuarios}">
                         <td>
                             <a th:href="@{/usuario/usuarioDetail/{idUsuario}(idUsuario = ${usuario.IdUsuario})}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                            
-                            <a class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+
+                            <a th:href="@{/usuario/delete/{IdUsuario}(IdUsuario = ${usuario.IdUsuario})}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+
+                            <div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div>
                         </td>
-                        
+
                         <td th:text="|${usuario.Nombre} ${usuario.ApellidoPaterno} ${usuario.ApellidoMaterno} |"></td>
-                        
+
                         <td>
                             <p th:text="| Tel: ${usuario.Telefono}|"></p>
                             <p th:text="| Cel: ${usuario.Celular}|"></p>
                         </td>
-                        
+
                         <td th:each="direccion : ${usuario.Direcciones}" >
-                            
-                             <p th:text="| Calle: ${direccion.Calle}|"></p>
-                             <p th:text="| NumeroInterior: ${direccion.NumeroInterior}|"></p>
-                             <p th:text="| NumeroExterior: ${direccion.NumeroExterior}|"></p>
-                             <p th:text="| Colonia: ${direccion.colonia.NombreColonia}|"></p>
-                            
-                     
-                             
-                          
-                       
+
+                            <p th:text="| Calle: ${direccion.Calle}|"></p>
+                            <p th:text="| NumeroInterior: ${direccion.NumeroInterior}|"></p>
+                            <p th:text="| NumeroExterior: ${direccion.NumeroExterior}|"></p>
+                            <p th:text="| Colonia: ${direccion.colonia.NombreColonia}|"></p>
+
+
+
+
+
                         </td>
                     </tr>
-                    
-                    
-                    
+
+
+
                 </tbody>
-                
+
             </table>
 
         </div>
     </body>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+
 </html>

@@ -15,7 +15,8 @@ import com.digis01.cCruzProgramacionNCapasSpring.ML.Result;
 interface IUsuarioJPA {
             Result GetAll(); //Esto es un metodo abstracto, no lleva implementacion en una interfaz.
             Result GetDetail(int idUsuario);
-            Result Add(Usuario usuario);
+            Result Add(com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario usuario);
+            Result Delete(int IdAlumno);
             Result UpdateUser(Usuario usuario);
             Result GetAllBusqueda(Usuario usuario);
 }

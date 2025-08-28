@@ -25,7 +25,7 @@ public class EstadoDAOImplementation implements IEstado{
     @Override
     public Result GetAll(int idPais) {
         
-        Result result = new Result();
+            Result result = new Result();
         try {
             jdbcTemplate.execute("{CALL EstadoGetAll(?,?)}",(CallableStatementCallback<Boolean>) callableStatement -> {
             callableStatement.registerOutParameter(1, java.sql.Types.REF_CURSOR);

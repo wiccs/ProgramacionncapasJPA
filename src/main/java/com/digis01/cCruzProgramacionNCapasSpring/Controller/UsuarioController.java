@@ -160,15 +160,24 @@ public class UsuarioController {
         Result resultrol = rolDAOImplementation.GetAll();
 
         model.addAttribute("Roles", resultrol.objects);
-
+        
+        Integer id = idUsuario;
+        if(id == null){
+            
+        int UsuarioId = 0;
+        model.addAttribute("idUsuario", UsuarioId);
+        
+        }
+        
         if (idDireccion == null) {
 
             Result result = usuarioDAOImplementation.GetDetail(idUsuario); //Este result contendra un idUsuario, y quiza un idDireccion
 
             int DireccionId = -1;
-
+           
+            
             model.addAttribute("Usuario", result.object); //Los ids se mandan a la vista del formulario para cargarlos. 
-            model.addAttribute("idUsuario", DireccionId);
+            model.addAttribute("idDireccion", DireccionId);
 
         }
 
@@ -177,7 +186,7 @@ public class UsuarioController {
     }
 
     @PostMapping("add") // localhost:8081/alumno/add
-    public String Add(@Valid @ModelAttribute("Usuario") Usuario usuario,
+    public String Add(@Valid @ModelAttribute("Usuario") com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario usuario,
             BindingResult bindingResult, Model model, @RequestParam("imagenFile") MultipartFile imagen) {
 
 //        if (bindingResult.hasErrors()) {
@@ -199,8 +208,8 @@ public class UsuarioController {
             }
         }
 
-      //  Result result = usuarioDAOImplementation.UpdateUser(usuario);
-
+       //Result result = usuarioDAOImplementation.UpdateUser(usuario);
+       Result result = usuarioJPADAOImplementation.Add(usuario);
         return "redirect:/usuario";
         //}
 
@@ -331,9 +340,6 @@ public class UsuarioController {
         return "redirect:/usuario";
     }
    
-   
-    
-
     private List<ErrorCM> ValidarDatos(List<Usuario> usuarios) {
 
         List<ErrorCM> errores = new ArrayList<>();
@@ -615,12 +621,19 @@ public class UsuarioController {
         }
 
     }
+      
+    //Eliminar__________________________________________________________
     
-    
-    
-    //Busqueda abierta__________________________________________________________
-    
-    
+      @GetMapping("delete/{IdUsuario}")
+
+    public String Delete(@PathVariable("IdUsuario") int IdUsuario){
+
+        Result result = usuarioJPADAOImplementation.Delete(IdUsuario);
+
+        return "redirect:/usuario";
+
+
+    }
     
 
 }

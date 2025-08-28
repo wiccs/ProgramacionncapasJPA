@@ -15,6 +15,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,12 +42,12 @@ public class Usuario {
     private String ApellidoMaterno;
 
     @Column(name = "edad")
-    private int Edad; //Recuerda quitar edad ya que se calcula con la fecha!!!
+    private Integer Edad; //Recuerda quitar edad ya que se calcula con la fecha!!!
 
     @Column(name = "sexo")
     private String Sexo;
 
-    @Column(name = "fechaNacimiento")
+    @Column(name = "fechanacimiento")
     private Date FechaNacimiento;
 
     @Column(name = "username")
@@ -76,8 +78,56 @@ public class Usuario {
 
     //La relación está mapeada por el atributo usuario en la entidad Direccion
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true) //Fetch indica cómo y cuándo se cargan los datos relacionados de otras tablas
-    public List<Direccion> Direcciones;
+    public List<Direccion> Direcciones = new ArrayList<>();
+    
+    public Usuario(com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario usuario){
+        this.Nombre = usuario.getNombre();
+        this.ApellidoPaterno = usuario.getApellidoPaterno();
+        this.ApellidoMaterno = usuario.getApellidoMaterno();
+        this.Edad = usuario.getEdad();
+        this.Sexo = usuario.getSexo();
+        this.FechaNacimiento = usuario.getFechaNacimiento();
+        this.Username = usuario.getUsername();
+        this.Email = usuario.getEmail();
+        this.Password = usuario.getPassword();
+        this.Telefono = usuario.getTelefono();
+        this.Celular = usuario.getCelular();
+        this.Curp = usuario.getCurp();
+        this.Fotito = usuario.getFotito();
+        this.Rol = new Rol();
+        this.Rol.setIdRol(usuario.Rol.getIdRol());
+        
+        //Direcciones: 
+        for(com.digis01.cCruzProgramacionNCapasSpring.ML.Direccion direccione : usuario.Direcciones){
+        
+            //Inicializamos su espacio en memoria
+            Direccion direccion = new Direccion();
+            
+            direccion.setCalle(direccione.getCalle());
+            direccion.setNumeroInterior(direccione.getNumeroInterior());
+            direccion.setNumeroExterior(direccione.getNumeroExterior());
+            
+            direccion.colonia = new Colonia();
+            direccion.colonia.setIdColonia(direccione.Coloniia.getIdColonia());
+            
+            direccion.usuario = this;
+//            direccion.colonia.Municipio = new Municipio();
+//            direccion.colonia.Municipio.setIdMunicipio(direccione.Coloniia.Municipio.getIdMunicipio());
+//            
+//            direccion.colonia.Municipio.Estado = new Estado();
+//            direccion.colonia.Municipio.Estado.setIdEstado(direccione.Coloniia.Municipio.Estado.getIdEstado());
+//            
+//            direccion.colonia.Municipio.Estado.Pais = new Pais();
+//            direccion.colonia.Municipio.Estado.Pais.setIdPais(direccione.Coloniia.Municipio.Estado.Pais.getIdPais());
+            
+           Direcciones.add(direccion);
+        }    
+    }
 
+    public Usuario() {
+    }
+
+    
     public int getIdUsuario() {
         return IdUsuario;
     }
@@ -114,7 +164,7 @@ public class Usuario {
         return Edad;
     }
 
-    public void setEdad(int Edad) {
+    public void setEdad(Integer Edad) {
         this.Edad = Edad;
     }
 

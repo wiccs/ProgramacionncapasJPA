@@ -9,6 +9,7 @@ import com.digis01.cCruzProgramacionNCapasSpring.ML.Result;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,8 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA {
                 result.objects.add(new com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario(usuario));
 
             }
+            
+            result.correct = true;
 
         } catch (Exception ex) {
 
@@ -77,12 +80,43 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA {
         }
         return result;
     }
-
-    @Override
-    public Result Add(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    @Transactional
+     @Override
+    public Result Delete(int IdUsuario) {
+        Result result = new Result();
+        
+        try{
+        
+            Usuario usuarioJPA = entityManager.find(Usuario.class, IdUsuario);
+            entityManager.remove(usuarioJPA);
+            
+            result.correct = true; 
+        }catch(Exception ex){
+        
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex; 
+        }
+        return result;  
     }
 
+    @Transactional
+    @Override
+    public Result Add(com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario usuarioML) {
+        Result result = new Result();
+        try {
+            Usuario usuarioJPA = new Usuario(usuarioML);
+            entityManager.persist(usuarioJPA);
+            
+        } catch (Exception e) {
+            result.correct = false;
+            result.errorMessage = e.getLocalizedMessage();
+            result.ex = e;
+        }
+        return result;
+    }
+ 
     @Override
     public Result UpdateUser(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -92,5 +126,7 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA {
     public Result GetAllBusqueda(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
 
 }

@@ -20,7 +20,7 @@ public class Colonia {
     @Column(name = "idcolonia")
     private int IdColonia;
     
-    @Column(name = "nombreColonia")
+    @Column(name = "nombre")
     private String NombreColonia;
     
     @Column(name = "codigopostal")
@@ -30,7 +30,11 @@ public class Colonia {
     @JoinColumn( name = "idmunicipio")
     public Municipio Municipio;
 
+    public Colonia() {
+    }
+
   
+    
 
     public int getIdColonia() {
         return IdColonia;

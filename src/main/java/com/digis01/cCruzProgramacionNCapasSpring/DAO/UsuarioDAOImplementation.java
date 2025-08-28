@@ -66,19 +66,19 @@ public class UsuarioDAOImplementation implements IUsuario {
                         direccion.setNumeroInterior(resultSet.getString("NumeroInterior"));
                         direccion.setNumeroExterior(resultSet.getString("NumeroExterior"));
                         //resto de datos
-                        direccion.colonia = new Colonia();
-                        direccion.colonia.setIdColonia(resultSet.getInt("IdColonia"));
-                        direccion.colonia.setNombreColonia(resultSet.getString("Colonia"));
+                        direccion.Coloniia = new Colonia();
+                        direccion.Coloniia.setIdColonia(resultSet.getInt("IdColonia"));
+                        direccion.Coloniia.setNombreColonia(resultSet.getString("Colonia"));
                         // resto de datos
-                        direccion.colonia.Municipio = new Municipio();
-                        direccion.colonia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
-                        direccion.colonia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
+                        direccion.Coloniia.Municipio = new Municipio();
+                        direccion.Coloniia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
+                        direccion.Coloniia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
 
-                        direccion.colonia.Municipio.Estado = new Estado();
-                        direccion.colonia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
-                        direccion.colonia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
-                        direccion.colonia.Municipio.Estado.Pais = new Pais();
-                        direccion.colonia.Municipio.Estado.Pais.setNombrePais(resultSet.getString("Pais"));
+                        direccion.Coloniia.Municipio.Estado = new Estado();
+                        direccion.Coloniia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
+                        direccion.Coloniia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
+                        direccion.Coloniia.Municipio.Estado.Pais = new Pais();
+                        direccion.Coloniia.Municipio.Estado.Pais.setNombrePais(resultSet.getString("Pais"));
 
                         ((Usuario) (result.objects.get(result.objects.size() - 1))).Direcciones.add(direccion);
 
@@ -126,17 +126,17 @@ public class UsuarioDAOImplementation implements IUsuario {
                             direccion.setNumeroExterior(resultSet.getString("NumeroExterior"));
 
                             //resto de datos
-                            direccion.colonia = new Colonia();
-                            direccion.colonia.setIdColonia(resultSet.getInt("IdColonia"));
-                            direccion.colonia.setNombreColonia(resultSet.getString("Colonia"));
+                            direccion.Coloniia = new Colonia();
+                            direccion.Coloniia.setIdColonia(resultSet.getInt("IdColonia"));
+                            direccion.Coloniia.setNombreColonia(resultSet.getString("Colonia"));
                             // resto de datos
-                            direccion.colonia.Municipio = new Municipio();
-                            direccion.colonia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
-                            direccion.colonia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
+                            direccion.Coloniia.Municipio = new Municipio();
+                            direccion.Coloniia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
+                            direccion.Coloniia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
 
-                            direccion.colonia.Municipio.Estado = new Estado();
-                            direccion.colonia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
-                            direccion.colonia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
+                            direccion.Coloniia.Municipio.Estado = new Estado();
+                            direccion.Coloniia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
+                            direccion.Coloniia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
 
                             usuario.Direcciones.add(direccion);
                         }
@@ -223,19 +223,19 @@ public class UsuarioDAOImplementation implements IUsuario {
                             direccion.setNumeroInterior(resultSet.getString("NumeroInterior"));
                             direccion.setNumeroExterior(resultSet.getString("NumeroExterior"));
                             //resto de datos
-                            direccion.colonia = new Colonia();
-                            direccion.colonia.setIdColonia(resultSet.getInt("IdColonia"));
-                            direccion.colonia.setNombreColonia(resultSet.getString("Colonia"));
+                            direccion.Coloniia = new Colonia();
+                            direccion.Coloniia.setIdColonia(resultSet.getInt("IdColonia"));
+                            direccion.Coloniia.setNombreColonia(resultSet.getString("Colonia"));
                             // resto de datos
-                            direccion.colonia.Municipio = new Municipio();
-                            direccion.colonia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
-                            direccion.colonia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
+                            direccion.Coloniia.Municipio = new Municipio();
+                            direccion.Coloniia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
+                            direccion.Coloniia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
 
-                            direccion.colonia.Municipio.Estado = new Estado();
-                            direccion.colonia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
-                            direccion.colonia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
-                            direccion.colonia.Municipio.Estado.Pais = new Pais();
-                            direccion.colonia.Municipio.Estado.Pais.setNombrePais(resultSet.getString("Pais"));
+                            direccion.Coloniia.Municipio.Estado = new Estado();
+                            direccion.Coloniia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
+                            direccion.Coloniia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
+                            direccion.Coloniia.Municipio.Estado.Pais = new Pais();
+                            direccion.Coloniia.Municipio.Estado.Pais.setNombrePais(resultSet.getString("Pais"));
 
                             usuario.Direcciones.add(direccion);
                         } while (resultSet.next());
@@ -257,7 +257,7 @@ public class UsuarioDAOImplementation implements IUsuario {
     }
 
     @Override
-    public Result Add(Usuario usuario) {
+    public Result Add(com.digis01.cCruzProgramacionNCapasSpring.ML.Usuario usuario) {
         Result result = new Result();
 
         try {
@@ -281,7 +281,7 @@ public class UsuarioDAOImplementation implements IUsuario {
                 callablestatement.setString(14, usuario.Direcciones.get(0).getCalle());
                 callablestatement.setString(15, usuario.Direcciones.get(0).getNumeroInterior());
                 callablestatement.setString(16, usuario.Direcciones.get(0).getNumeroExterior());
-                callablestatement.setInt(17, usuario.Direcciones.get(0).colonia.getIdColonia());
+                callablestatement.setInt(17, usuario.Direcciones.get(0).Coloniia.getIdColonia());
 
                 int isCorrect = callablestatement.executeUpdate();
 
@@ -386,19 +386,19 @@ public class UsuarioDAOImplementation implements IUsuario {
                         direccion.setNumeroInterior(resultSet.getString("NumeroInterior"));
                         direccion.setNumeroExterior(resultSet.getString("NumeroExterior"));
                         //resto de datos
-                        direccion.colonia = new Colonia();
-                        direccion.colonia.setIdColonia(resultSet.getInt("IdColonia"));
-                        direccion.colonia.setNombreColonia(resultSet.getString("Colonia"));
+                        direccion.Coloniia = new Colonia();
+                        direccion.Coloniia.setIdColonia(resultSet.getInt("IdColonia"));
+                        direccion.Coloniia.setNombreColonia(resultSet.getString("Colonia"));
                         // resto de datos
-                        direccion.colonia.Municipio = new Municipio();
-                        direccion.colonia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
-                        direccion.colonia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
+                        direccion.Coloniia.Municipio = new Municipio();
+                        direccion.Coloniia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
+                        direccion.Coloniia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
 
-                        direccion.colonia.Municipio.Estado = new Estado();
-                        direccion.colonia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
-                        direccion.colonia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
-                        direccion.colonia.Municipio.Estado.Pais = new Pais();
-                        direccion.colonia.Municipio.Estado.Pais.setNombrePais(resultSet.getString("Pais"));
+                        direccion.Coloniia.Municipio.Estado = new Estado();
+                        direccion.Coloniia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
+                        direccion.Coloniia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
+                        direccion.Coloniia.Municipio.Estado.Pais = new Pais();
+                        direccion.Coloniia.Municipio.Estado.Pais.setNombrePais(resultSet.getString("Pais"));
 
                         ((Usuario) (result.objects.get(result.objects.size() - 1))).Direcciones.add(direccion);
 
@@ -444,17 +444,17 @@ public class UsuarioDAOImplementation implements IUsuario {
                             direccion.setNumeroExterior(resultSet.getString("NumeroExterior"));
 
                             //resto de datos
-                            direccion.colonia = new Colonia();
-                            direccion.colonia.setIdColonia(resultSet.getInt("IdColonia"));
-                            direccion.colonia.setNombreColonia(resultSet.getString("Colonia"));
+                            direccion.Coloniia = new Colonia();
+                            direccion.Coloniia.setIdColonia(resultSet.getInt("IdColonia"));
+                            direccion.Coloniia.setNombreColonia(resultSet.getString("Colonia"));
                             // resto de datos
-                            direccion.colonia.Municipio = new Municipio();
-                            direccion.colonia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
-                            direccion.colonia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
+                            direccion.Coloniia.Municipio = new Municipio();
+                            direccion.Coloniia.Municipio.setIdMunicipio(resultSet.getInt("IdMunicipio"));
+                            direccion.Coloniia.Municipio.setNombreMunicipio(resultSet.getString("Municipio"));
 
-                            direccion.colonia.Municipio.Estado = new Estado();
-                            direccion.colonia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
-                            direccion.colonia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
+                            direccion.Coloniia.Municipio.Estado = new Estado();
+                            direccion.Coloniia.Municipio.Estado.setIdEstado(resultSet.getInt("IdEstado"));
+                            direccion.Coloniia.Municipio.Estado.setNombreEstado(resultSet.getString("Estado"));
 
                             usuarioB.Direcciones.add(direccion);
                         }

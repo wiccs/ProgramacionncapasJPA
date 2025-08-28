@@ -14,7 +14,7 @@ public class Direccion {
     private String Calle;
     private String NumeroInterior;
     private String NumeroExterior;
-    public Colonia colonia;
+    public Colonia Coloniia;
     
    
 
@@ -51,11 +51,11 @@ public class Direccion {
     }
 
     public Colonia getColonia() {
-        return colonia;
+        return Coloniia;
     }
 
-    public void setColonia(Colonia colonia) {
-        this.colonia = colonia;
+    public void setColonia(Colonia Colonia) {
+        this.Coloniia = Colonia;
     }
     
     

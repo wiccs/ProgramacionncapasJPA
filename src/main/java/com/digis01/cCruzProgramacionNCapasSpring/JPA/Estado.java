@@ -21,7 +21,7 @@ public class Estado {
     @Column(name = "idestado")
     private int IdEstado;
     
-    @Column(name = "nombreestado")
+    @Column(name = "nombre")
     private String NombreEstado;
     
     @ManyToOne

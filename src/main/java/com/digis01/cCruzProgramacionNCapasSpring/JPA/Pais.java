@@ -14,9 +14,10 @@ import jakarta.persistence.Id;
 public class Pais {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idpais")
      public int IdPais;
     
-    @Column(name = "nombrepais")
+    @Column(name = "nombre")
     public String NombrePais;
 
     public int getIdPais() {

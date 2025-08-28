@@ -42,7 +42,9 @@
             <form method="post" th:object="${Usuario}" th:action="@{/usuario/add}" enctype="multipart/form-data"> //Este formulario trabaja con el objeto pasado por el comtrolador @GetMapping("getformEditable")
 
                 <!-- Seccion de usuario -->
-                <div class="row" th:if = "*{IdUsuario != 0}">
+                
+                <!--Solo se muestra si idUsuario es diferente de 0;-->
+                <div class="row" th:if = "${(IdUsuario != 0 || idDireccion != -1)}">
 
                    <!--Seccion de foto -->
                     <div class="col-md-4 text-center d-flex flex-column align-items-center">
@@ -93,11 +95,11 @@
                             </div>
 
                             <div class="row">
-                                <div class="col mb-3">
+<!--                                <div class="col mb-3">
                                     <label for="EdadUsuario" class="form-label fw-bold">Edad</label>
                                     <input id="EdadUsuario" type="text" class="form-control" placeholder="Edad Usuario" th:field="*{Edad}">
 
-                                </div>
+                                </div>-->
 
                                 <div class="col mb-3">
                                     <label for="SexoUsuario" class="form-label fw-bold">Sexo</label>
@@ -158,9 +160,7 @@
                                     <option th:each="rol : ${Roles}" th:text="${rol.Nombre}" th:value="${rol.idRol}">One</option>
                                 </select>
 
-
                             </div>
-
 
                         </div>
                     </div>
@@ -169,7 +169,8 @@
 
                 <hr>
 
-                <div th:if="${idUsuario != -1}">
+                <!--Solo se muestra si es diferente de menos 1-->
+                <div th:if="${idDireccion != -1}"> 
                     <!-- Seccion de direccion -->
                     <div class="row mb-3" >
 
@@ -206,7 +207,7 @@
 
                         <div class="col-md-3">
                             <label for="coloniaddl" class="form-label fw-bold">Colonia</label>
-                            <select id="coloniaddl" class="form-select" aria-label="Default select example">
+                            <select id="coloniaddl" class="form-select" aria-label="Default select example" th:field="*{Direcciones[0].Colonia.IdColonia}">
                                 <option value="0" selected>Selecciona una colonia</option>
                                 <option th:each="colonia : ${colonias}" 
                                         th:value="${colonia.IdColonia}" 
@@ -233,14 +234,14 @@
                         </div>
                     </div>
 
-                    <div class="row"> 
+<!--                    <div class="row"> 
 
                         <div class="col-md-3">
                             <label for="colonia" class="form-label fw-bold">Colonia</label>
                             <input id="colonia" type="text" class="form-control" placeholder="Colonia" th:field="*{Direcciones[0].colonia.IdColonia}">
                         </div>
 
-                    </div>
+                    </div>-->
                 </div>
 
                 <button type="submit" class="btn btn-success mt-4 w-100 fw-bold">Agregar</button>

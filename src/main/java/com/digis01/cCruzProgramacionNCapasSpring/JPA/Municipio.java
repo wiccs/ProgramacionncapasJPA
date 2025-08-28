@@ -21,7 +21,7 @@ public class Municipio {
     @Column(name = "idmunicipio")
     private int IdMunicipio;
     
-    @Column(name = "nombremunicipio")
+    @Column(name = "nombre")
     private String NombreMunicipio;
     
     @ManyToOne

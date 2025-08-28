@@ -35,7 +35,7 @@ public class Direccion {
     public Colonia colonia;
     
     @ManyToOne
-    @JoinColumn( name = "idUsuario")
+    @JoinColumn( name = "idusuario")
     public Usuario usuario;
 
     public int getIdDireccion() {
